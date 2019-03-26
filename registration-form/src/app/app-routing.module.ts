@@ -1,7 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { HomeComponent } from "./views/home/home.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: "", component: HomeComponent },
+  { path: "auth", loadChildren: "./views/auth/auth.module#AuthModule" },
+  { path: "**", component: HomeComponent }
+];
 
 @NgModule({
   imports: [
