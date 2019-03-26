@@ -1,0 +1,8 @@
+{
+  "universal": {
+    "project": "registration-form",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}
