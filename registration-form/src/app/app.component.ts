@@ -13,7 +13,7 @@ export class AppComponent {
     router.events.forEach(event => {
       if (event instanceof NavigationStart) {
         if (
-          event["url"] == "/register" 
+          event["url"] == "/auth" 
         ) {
           this.showHead = false;
         } else {
