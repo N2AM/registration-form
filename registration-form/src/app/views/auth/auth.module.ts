@@ -1,3 +1,4 @@
+import { LocalAuthService } from "./../../shared/services/local-auth.service";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -16,6 +17,7 @@ import { RegisterComponent } from "./register/register.component";
     FormsModule,
     MatFormFieldModule,
     MatInputModule
-  ]
+  ],
+  providers: [LocalAuthService]
 })
 export class AuthModule {}

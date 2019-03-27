@@ -1,3 +1,4 @@
+import { atLeastOne } from "./../../../shared/helpers/atLeastOne.validator";
 import { LocalAuthService } from "./../../../shared/services/local-auth.service";
 import { Component, OnInit } from "@angular/core";
 import {
@@ -22,9 +23,22 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registrationForm = this.fb.group(
       {
-        notificationMode: ["", [Validators.required]],
-        email: "",
-        phone: "",
+        email: [
+          "",
+          [
+            Validators.pattern(
+              "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+            )
+          ]
+        ],
+        phone: [
+          "",
+          [
+            Validators.minLength(11),
+            Validators.maxLength(15),
+            Validators.pattern("^[0-9]*$")
+          ]
+        ],
         name: [
           "",
           [
@@ -34,77 +48,29 @@ export class RegisterComponent implements OnInit {
           ]
         ],
         password: ["", [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ["", [Validators.required, Validators.minLength(8)]],
-        building_no: [
-          "",
-          [
-            Validators.required,
-            Validators.maxLength(5),
-            Validators.pattern("^[0-9]*$")
-          ]
-        ],
-        street: ["", [Validators.required, Validators.maxLength(40)]],
-        town: [
-          "",
-          [
-            Validators.required,
-            Validators.maxLength(58),
-            Validators.pattern("[a-zA-Z ]*")
-          ]
-        ]
+        confirmPassword: ["", [Validators.required]],
+        building_no: ["", [Validators.required]],
+        street: ["", [Validators.required]],
+        town: ["", [Validators.required]]
       },
       {
-        validator: MustMatch("password", "confirmPassword")
-      }
-    );
-    this.handleFormChanges();
-  }
-  handleFormChanges() {
-    this.registrationForm.controls["notificationMode"].valueChanges.subscribe(
-      mode => {
-        if (mode === "email") {
-          this.registrationForm.controls["email"].setValidators([
-            Validators.required,
-            Validators.email,
-            Validators.pattern(
-              "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-            )
-          ]);
-          this.registrationForm.controls["phone"].clearValidators();
-        } else if (mode === "mobile") {
-          this.registrationForm.controls["phone"].setValidators([
-            Validators.required,
-            Validators.minLength(11),
-            Validators.maxLength(15),
-            Validators.pattern("^[0-9]*$")
-          ]);
-          this.registrationForm.controls["email"].clearValidators();
-        } else if (mode === "both") {
-          this.registrationForm.controls["email"].setValidators([
-            Validators.required,
-            Validators.email,
-            Validators.pattern(
-              "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
-            )
-          ]);
-          this.registrationForm.controls["phone"].setValidators([
-            Validators.required,
-            Validators.minLength(11),
-            Validators.maxLength(15),
-            Validators.pattern("^[0-9]*$")
-          ]);
-        }
-        this.registrationForm.controls["email"].updateValueAndValidity();
-        this.registrationForm.controls["phone"].updateValueAndValidity();
+        validators: [
+          MustMatch("password", "confirmPassword"),
+          atLeastOne(Validators.required, ["email", "phone"])
+        ]
       }
     );
   }
+
   regf() {
     return this.registrationForm.controls;
   }
   register() {
     if (this.registrationForm.valid) {
+      console.log(this.registrationForm.value);
       this.localAuthService.register(this.registrationForm.value);
+    } else {
+      return;
     }
   }
 }
