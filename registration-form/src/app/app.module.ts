@@ -10,9 +10,10 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./views/home/home.component";
 import { httpInterceptorProviders } from "./shared/interceptors";
 import { HeaderComponent } from "./views/header/header.component";
+import { DialogComponent } from "./views/dialog/dialog.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, DialogComponent],
   imports: [
     CommonModule,
     NgtUniversalModule,
