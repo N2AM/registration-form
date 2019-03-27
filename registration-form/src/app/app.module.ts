@@ -11,6 +11,7 @@ import { HomeComponent } from "./views/home/home.component";
 import { httpInterceptorProviders } from "./shared/interceptors";
 import { HeaderComponent } from "./views/header/header.component";
 import { DialogComponent } from "./views/dialog/dialog.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, DialogComponent],
@@ -19,7 +20,7 @@ import { DialogComponent } from "./views/dialog/dialog.component";
     NgtUniversalModule,
     TransferHttpCacheModule,
     HttpClientModule,
-
+    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders]

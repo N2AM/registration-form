@@ -5,8 +5,7 @@
 export const environment = {
   production: false,
   baseHref: "/",
-  apiUrl: "http://alkahila.retailak.com/api/"
-  // apiUrl: "http://example.com/api/"
+  apiUrl: "http://example.com/api/"
 };
 
 /*
