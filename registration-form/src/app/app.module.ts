@@ -8,9 +8,11 @@ import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./views/home/home.component";
+import { httpInterceptorProviders } from "./shared/interceptors";
+import { HeaderComponent } from "./views/header/header.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent],
   imports: [
     CommonModule,
     NgtUniversalModule,
@@ -19,6 +21,6 @@ import { HomeComponent } from "./views/home/home.component";
 
     AppRoutingModule
   ],
-  providers: []
+  providers: [httpInterceptorProviders]
 })
 export class AppModule {}
