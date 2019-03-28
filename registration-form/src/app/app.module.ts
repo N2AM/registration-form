@@ -12,7 +12,8 @@ import { httpInterceptorProviders } from "./shared/interceptors";
 import { HeaderComponent } from "./views/header/header.component";
 import { DialogComponent } from "./views/dialog/dialog.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
+import { LocalAuthService } from "./shared/services/local-auth.service";
+import { MatDialogModule } from '@angular/material';
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent, DialogComponent],
   imports: [
@@ -21,8 +22,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     TransferHttpCacheModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule
   ],
-  providers: [httpInterceptorProviders]
+  providers: [httpInterceptorProviders, LocalAuthService],
+  entryComponents: [DialogComponent]
 })
 export class AppModule {}

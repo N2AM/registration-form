@@ -12,7 +12,7 @@ import {
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { retry } from "rxjs/operators";
-import { DialogService } from '../services/dialog.service';
+import { DialogService } from "../services/dialog.service";
 
 @Injectable({
   providedIn: "root"
@@ -30,6 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.utilities.getUserToken();
     const clonedReq = req.clone({
       headers: new HttpHeaders({
+        "Content-Type": "application/json",
         Authorization: token,
         lang: "en"
       })
@@ -40,8 +41,8 @@ export class AuthInterceptor implements HttpInterceptor {
         let errorMessage = "";
         if (error.error.message) {
           // client-side error
-          this.dialog.openDialog({ msg: error.error.message, justOk: true });
-          // errorMessage = `Error: ${error.error.message}`;
+          this.dialog.openDialog({ message: error.error.message });
+          errorMessage = `Error: ${error.error.message}`;
         } else {
           // server-side error
           this.dialog.openDialog({ msg: error.message });

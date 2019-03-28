@@ -1,9 +1,14 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
 export class Utilities {
   Constructor() {}
 
   getUserToken() {
-    if (localStorage.getItem("TOKEN")) {
-      return localStorage.getItem("TOKEN");
+    if (localStorage.getItem("REGTOKEN")) {
+      return localStorage.getItem("REGTOKEN");
     } else {
       return " ";
     }

@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       {
         validators: [
           MustMatch("password", "confirmPassword"),
-          atLeastOne(Validators.required, ["email", "phone"])
+          atLeastOne("email", "phone")
         ]
       }
     );

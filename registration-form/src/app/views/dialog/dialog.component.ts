@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: "app-dialog",
@@ -6,7 +7,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./dialog.component.scss"]
 })
 export class DialogComponent implements OnInit {
-  constructor() {}
+  message;
+
+  constructor(public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    if (this.data && this.data.message) {
+      this.message = this.data.message;
+    }
+    }
 
   ngOnInit() {}
 }

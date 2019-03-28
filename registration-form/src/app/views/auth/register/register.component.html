@@ -35,10 +35,6 @@
           <mat-form-field class="form-field" appearance="outline">
             <mat-label>E-mail</mat-label>
             <input matInput placeholder="E-mail" formControlName="email" />
-            <!-- <mat-error
-              *ngIf="registrationForm.get('email').hasError('atleastone')"
-              >E-mail is required</mat-error
-            > -->
             <mat-error *ngIf="registrationForm.get('email').hasError('pattern')"
               >E-mail is invalid</mat-error
             >
@@ -51,7 +47,12 @@
             <mat-error *ngIf="registrationForm.get('phone').hasError('pattern')"
               >Phone is invalid</mat-error
             >
-            <mat-error *ngIf="registrationForm.hasError('atLeastOne')"
+            <mat-error
+              *ngIf="registrationForm.get('phone').hasError('atLeastOne')"
+              >Phone is required</mat-error
+            >
+            <mat-error
+              *ngIf="registrationForm.get('phone').hasError('required')"
               >Phone is required</mat-error
             >
             <mat-error
